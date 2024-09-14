@@ -1,0 +1,23 @@
+.modal__content_type_image {
+    background-color: #ffffff;
+    padding: 0;
+  }
+  
+  .modal__image {
+    width: 100%;
+    border-radius: 2% 2% 0 0;
+  }
+  
+  .modal__caption {
+    margin-top: 20px;
+    margin-left: 32px;
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+  
+  .modal__weather {
+    margin-left: 32px;
+    margin-bottom: 32px;
+    margin-top: 12px;
+    font-size: 20px;
+  }

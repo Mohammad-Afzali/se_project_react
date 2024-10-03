@@ -3,7 +3,6 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function AddItemModal({
   closeActiveModal,
-  //onAddItem,
   isOpen,
   activeModal,
   isLoading,

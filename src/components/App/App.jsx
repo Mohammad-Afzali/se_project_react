@@ -111,10 +111,10 @@ import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import Footer from "../Footer/Footer";
-import CurrentTempUnitContext from "../../Contexts/CurrentTempUnitContext";
+import CurrentTempUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import { getItems, postItems, deleteItems } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
 function App() {
@@ -149,7 +149,7 @@ function App() {
       .catch((err) => console.log(err));
   };
   const handleDeleteCard = (card) => {
-    deleteItem(card._id)
+    deleteItems(card._id)
       .then(() => {
         setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
         setSelectedCard({});

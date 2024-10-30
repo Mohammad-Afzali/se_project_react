@@ -8,7 +8,7 @@ import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import Footer from "../Footer/Footer";
-import CurrentTempUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, postItems, deleteItems } from "../../utils/api.js";
@@ -22,7 +22,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
   const handleAddClick = () => {
@@ -59,8 +59,8 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    if (currentTempUnit === "C") setCurrentTempUnit("F");
-    if (currentTempUnit === "F") setCurrentTempUnit("C");
+    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
+    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
   useEffect(() => {
@@ -106,8 +106,8 @@ function App() {
 
   return (
     <div className="page">
-      <CurrentTempUnitContext.Provider
-        value={{ currentTempUnit, handleToggleSwitchChange }}
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
           <Header
@@ -121,7 +121,7 @@ function App() {
               element={
                 <Main
                   weatherData={weatherData}
-                  onCardClick={handleCardClick}
+                  handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
               }
@@ -140,7 +140,7 @@ function App() {
           <Footer />
         </div>
         <AddItemModal
-          handleModalClose={handleModalClose}
+          closeActiveModal={handleModalClose}
           isOpen={activeModal === "add-garment"}
           handleAddItem={handleAddItem}
         />
@@ -156,7 +156,7 @@ function App() {
           handleDeleteCard={handleDeleteCard}
           selectedCard={selectedCard}
         />
-      </CurrentTempUnitContext.Provider>
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }

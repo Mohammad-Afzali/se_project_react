@@ -6,7 +6,7 @@ import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -38,7 +38,7 @@ function App() {
   };
 
   const handleAddItem = (item) => {
-    return addItem(item)
+    return postItem(item)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         handleModalClose();

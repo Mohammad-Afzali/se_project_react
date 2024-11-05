@@ -38,7 +38,7 @@ function App() {
   };
 
   const handleAddItem = (item) => {
-    return postItem(item)
+    return postItems(item)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         handleModalClose();

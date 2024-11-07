@@ -152,10 +152,12 @@ function App() {
           handleDeleteClick={handleDeleteCardClick}
         />
         <DeleteModal
+          item={selectedCard}
           isOpened={activeModal === "delete-confirmation"}
           onClose={handleModalClose}
           handleDeleteItem={handleDeleteCard}
           selectedCard={selectedCard}
+          handleCloseClick={handleModalClose}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

@@ -14,7 +14,7 @@ export default function DeleteModal({
 
   return (
     <div className={`modal ${isOpened && "modal_opened"}`}>
-      <div className="modal__container modal__content_type_delete">
+      <div className="modal__container modal__content_type_delete modal__content">
         <button className="modal__close" type="button">
           <img
             src={close}
@@ -34,7 +34,7 @@ export default function DeleteModal({
         <button
           type="button"
           className="modal__cancel"
-          onClick={handleDeleteClose}
+          onClick={handleCloseClick}
         >
           Cancel
         </button>

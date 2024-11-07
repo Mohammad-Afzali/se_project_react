@@ -28,7 +28,7 @@ export default function DeleteModal({
           <br /> This action is irreversible.
         </p>
 
-        <button type="submit" className="modal__confirm" onClick={deleteCard}>
+        <button type="button" className="modal__confirm" onClick={deleteCard}>
           Yes, delete item
         </button>
         <button

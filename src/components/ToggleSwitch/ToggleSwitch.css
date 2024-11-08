@@ -10,6 +10,8 @@
   width: 56px;
   height: 28px;
   appearance: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .switch__slider {

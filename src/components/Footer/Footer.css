@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+.footer {
+  padding-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__author {
+  font-family: "Cabinet Grotesk Med", sans-serif;
+  margin-top: 85px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.footer__copyright {
+  margin-top: 85px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}

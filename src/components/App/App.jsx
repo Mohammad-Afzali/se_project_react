@@ -12,6 +12,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import { getItems, postItems, deleteItems, addCardLike, removeCardLike, } from "../../utils/api.js";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import * as auth from "../../utils/auth";
 import Register from "../RegisterModal/RegisterModal";
@@ -274,6 +275,12 @@ function App() {
           handleLogin={handleLogin}
           handleRegisterClick={handleRegisterClick}
         />
+        <EditProfileModal
+          isOpen={activeModal === "edit-profile"}
+          onClose={closeActiveModal}
+          updateUser={handleUpdateUser}
+          isLoading={isLoading}
+            />
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

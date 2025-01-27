@@ -35,4 +35,27 @@
     cursor: pointer;
   }
 
+  .card__like {
+    width: 18px;
+    height: 15px;
+    background-color: transparent;
+    border: 0;
+    background-image: url(../../images/like.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .card__like_visible {
+    visibility: visible;
+  }
+  
+  .card__like_hidden {
+    visibility: hidden;
+  }
+  
+  .card__like_liked {
+    background-image: url(../../images/liked.png);
+  }
+
 

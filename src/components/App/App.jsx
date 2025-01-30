@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -11,12 +10,12 @@ import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import { getItems, postItems, deleteItems, addCardLike, removeCardLike, } from "../../utils/api.js";
+import { getItems, addItem, deleteCard, addCardLike, removeCardLike, } from "../../utils/api.js";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import * as auth from "../../utils/auth";
 import Register from "../RegisterModal/RegisterModal";
-import Login from "../Login/LoginModal";
+import Login from "../LoginModal/LoginModal";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -50,7 +49,7 @@ function App() {
       .catch((err) => console.log(err));
   };
   const handleDeleteCard = (card) => {
-    deleteItems(card._id)
+    deleteCard(card._id)
       .then(() => {
         setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
         setSelectedCard({});
@@ -121,12 +120,13 @@ function App() {
       .signUp({ name, avatar, email, password })
       .then(() => {
         handleLogin({ email, password });
-        closeActiveModal();
+        handleModalClose();
         navigate("/profile");
       })
       .catch(console.error);
   };
 
+  const [isLoggedIn, setIsLoggedIn] = useState("")
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
       return;
@@ -139,7 +139,7 @@ function App() {
         .then((user) => {
           setCurrentUser(user.data);
           setIsLoggedIn(true);
-          closeActiveModal();
+          handleModalClose();
       })
       .catch(console.error);
   };
@@ -154,7 +154,7 @@ function App() {
       .updateUser(data)
       .then((res) => {
         setCurrentUser(res.data);
-        closeActiveModal();
+        handleModalClose();
       })
       .catch(console.error);
   };
@@ -198,7 +198,7 @@ function App() {
     addItem(values, jwt)
       .then((newItem) => {
         setClothingItems((clothingItems) => [newItem.data, ...clothingItems]);
-        closeActiveModal();
+        handleModalClose();
       })
       .catch((error) => {
         console.error("Error adding item:", error);
@@ -263,21 +263,21 @@ function App() {
         />
         <Register
           isOpen={activeModal === "signup"}
-          onClose={closeActiveModal}
+          onClose={handleModalClose}
           handleRegistration={handleRegistration}
           handleLoginClick={handleLoginClick}
           isLoading={isLoading}
         />
         <Login
           isOpen={activeModal === "login"}
-          onClose={closeActiveModal}
+          onClose={handleModalClose}
           isLoading={isLoading}
           handleLogin={handleLogin}
           handleRegisterClick={handleRegisterClick}
         />
         <EditProfileModal
           isOpen={activeModal === "edit-profile"}
-          onClose={closeActiveModal}
+          onClose={handleModalClose}
           updateUser={handleUpdateUser}
           isLoading={isLoading}
             />

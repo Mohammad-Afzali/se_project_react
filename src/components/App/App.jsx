@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate, useLocation} from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -10,13 +10,7 @@ import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
-import {
-  getItems,
-  addItem,
-  deleteCard,
-  addCardLike,
-  removeCardLike,
-} from "../../utils/api.js";
+import { getItems, addItem, deleteCard, addCardLike, removeCardLike} from "../../utils/api.js";
 import ProtectedRoute from "../ProtectedRoute";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import DeleteModal from "../DeleteModal/DeleteModal";

@@ -7,7 +7,7 @@ import  CurrentTemperatureUnitContext  from "../../contexts/CurrentTemperatureUn
 function Main({
   weatherData,
   onCardClick,
-  defaultClothingItems,
+  ClothingItems,
   onCardLike,
   weatherTemp,
 }) {
@@ -22,7 +22,7 @@ function Main({
           Today is {temp} &deg;{currentTemperatureUnit}/ You may want to wear:
         </p>
         <ul className="cards__list">
-          {defaultClothingItems
+          {ClothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })

@@ -17,6 +17,8 @@ import DeleteModal from "../DeleteModal/DeleteModal";
 import * as auth from "../../utils/auth";
 import Register from "../RegisterModal/RegisterModal";
 import Login from "../LoginModal/LoginModal";
+import { setToken, getToken, removeToken } from "../../utils/token";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -47,7 +49,7 @@ function App() {
   };
 
   const handleAddItem = (item) => {
-    return postItems(item)
+    return AddItem(item)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         handleModalClose();
@@ -199,7 +201,7 @@ function App() {
           .catch((err) => console.log(err));
   };
 
-  const onAddItem = (values) => {
+  const AddItem = (values) => {
     const jwt = getToken();
     addItem(values, jwt)
       .then((newItem) => {
@@ -213,7 +215,6 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={{ currentUser }}>
-      <AppContext.Provider value={{ isLoggedIn }}>
         <div className="page">
           <CurrentTemperatureUnitContext.Provider
             value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -223,7 +224,7 @@ function App() {
                 handleAddClick={handleAddClick}
                 handleRegisterClick={handleRegisterClick}
                 handleLoginClick={handleLoginClick}
-                weatherLocation={weatherLocation}
+                // weatherLocation={weatherLocation}
                 weatherData={weatherData}
                 isLoggedIn={isLoggedIn}
               />
@@ -234,7 +235,7 @@ function App() {
                   element={
                     <Main
                       weatherData={weatherData}
-                      weatherTemp={temp}
+                      weatherTemp={weatherData.temp}
                       handleCardClick={handleCardClick}
                       defaultClothingItems={clothingItems}
                       onCardLike={handleCardLike}
@@ -246,7 +247,7 @@ function App() {
                   element={
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
                       <Profile
-                        defaultClothingItems={clothingItems}
+                        defaultclothingItems={clothingItems}
                         handleCardClick={handleCardClick}
                         handleAddClick={handleAddClick}
                         handleEditClick={handleEditClick}
@@ -272,7 +273,7 @@ function App() {
             {activeModal === "add-garment" && (
               <AddItemModal
                 isOpen={activeModal === "add-garment"}
-                closeActiveModal={handleModalClose}
+                handleModalClose={handleModalClose}
                 handleAddItem={handleAddItem}
                 isLoading={isLoading}
               />
@@ -281,7 +282,7 @@ function App() {
               <ItemModal
                 isOpen={activeModal === "preview"}
                 card={selectedCard}
-                closeActiveModal={handleModalClose}
+                handleModalClose={handleModalClose}
                 handleDeleteClick={handleDeleteCardClick}
               />
             )}
@@ -289,7 +290,7 @@ function App() {
               <DeleteModal
               item={selectedCard}
               isOpened={activeModal === "delete-confirmation"}
-              closeActiveModal={handleModalClose}
+              handleModalClose={handleModalClose}
               handleDeleteItem={handleDeleteCard}
               selectedCard={selectedCard}
               handleCloseClick={handleModalClose}
@@ -299,7 +300,7 @@ function App() {
           {activeModal === "signup" && (
             <Register
               isOpen={activeModal === "signup"}
-              closeActiveModal={handleModalClose}
+              handleModalClose={handleModalClose}
               handleRegistration={handleRegistration}
               handleLoginClick={handleLoginClick}
               isLoading={isLoading}
@@ -308,7 +309,7 @@ function App() {
           {activeModal === "login" && (
             <Login
               isOpen={activeModal === "login"}
-              closeActiveModal={handleModalClose}
+              handleModalClose={handleModalClose}
               isLoading={isLoading}
               handleLogin={handleLogin}
               handleRegisterClick={handleRegisterClick}
@@ -323,7 +324,6 @@ function App() {
             />
           )}
         </div>
-      </AppContext.Provider>
     </CurrentUserContext.Provider>
   );
 }
